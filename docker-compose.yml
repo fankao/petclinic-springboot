@@ -1,0 +1,12 @@
+# Use postgres/example user/password credentials
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${APP_NAME}
