@@ -1,16 +1,15 @@
 package com.pet.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,6 +17,7 @@ import java.util.Set;
 @Table(name = "pets")
 public class Pet extends BaseEntity {
     @Column(name = "name")
+    @NotBlank(message = "Pet name must not blank")
     private String name;
 
     @ManyToOne

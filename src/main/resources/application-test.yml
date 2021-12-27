@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: petclinic
+  datasource:
+    url: jdbc:postgresql://localhost:5432/petclinic?currentSchema=test
+    username: postgres
+    password: 1234
+server:
+  servlet:
+    context-path: /api

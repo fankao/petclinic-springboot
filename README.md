@@ -1,7 +1,7 @@
-<h2>PetClinic Sample Application Requirements</h2>
+<h1>PetClinic Sample Application Requirements</h1>
 The application requirement is for an information system that is accessible through a web browser. The users of the application are employees of the clinic who in the course of their work need to view and manage information regarding the veterinarians, the clients, and their pets. The sample application supports the following:
 
-<h2>Use Cases</h2>
+###### Use Cases
 - View a list of veterinarians and their specialties
 - View information pertaining to a pet owner
 - Update the information pertaining to a pet owner

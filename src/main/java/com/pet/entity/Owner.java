@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,11 +26,17 @@ public class Owner extends Person{
     }
 
     @Column(name = "address")
+    @NotBlank(message = "Owner address must not blank")
     private String address;
+
     @Column(name = "telephone")
+    @NotBlank(message = "Owner telephone must not blank")
     private String telephone;
+
     @Column(name = "city")
+    @NotBlank(message = "Owner city must not blank")
     private String city;
+
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "owner")
     private Set<Pet> pets = new HashSet<Pet>();
 }
