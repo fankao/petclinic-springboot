@@ -1,6 +1,7 @@
 package com.pet.service.impl;
 
 import com.pet.entity.Visit;
+import com.pet.exception.EntityNotFoundException;
 import com.pet.repository.VisitRepository;
 import com.pet.service.VisitService;
 import javassist.NotFoundException;
@@ -23,8 +24,8 @@ public class VisitServiceImpl implements VisitService {
     }
 
     @Override
-    public Visit findById(Long id) throws NotFoundException {
-        return visitRepository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Not found the visit with id %s", id)));
+    public Visit findById(Long id) throws RuntimeException {
+        return visitRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Requested visit not found"));
     }
 
     @Override

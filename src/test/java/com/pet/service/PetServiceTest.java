@@ -2,6 +2,7 @@ package com.pet.service;
 
 import com.github.javafaker.Faker;
 import com.pet.entity.Pet;
+import com.pet.exception.PetNotFoundException;
 import com.pet.repository.PetRepository;
 import com.pet.service.impl.PetServiceImpl;
 import javassist.NotFoundException;
@@ -54,10 +55,10 @@ public class PetServiceTest {
     }
 
     @Test
-    public void findById_ThrowNoSuchElementException_PetIsNotFound() {
+    public void findById_ThrowPetNotFoundException_PetIsNotFound() {
         Long id = faker.number().randomNumber();
         when(petRepository.findById(id)).thenReturn(Optional.empty());
-        assertThrows(NoSuchElementException.class, () -> petService.findById(id));
+        assertThrows(PetNotFoundException.class, () -> petService.findById(id));
     }
 
     @Test

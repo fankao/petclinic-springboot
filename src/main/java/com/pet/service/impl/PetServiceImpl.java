@@ -1,6 +1,8 @@
 package com.pet.service.impl;
 
 import com.pet.entity.Pet;
+import com.pet.exception.ErrorCode;
+import com.pet.exception.PetNotFoundException;
 import com.pet.repository.PetRepository;
 import com.pet.service.PetService;
 import javassist.NotFoundException;
@@ -25,8 +27,8 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public Pet findById(Long id) throws NotFoundException {
-        return petRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Pet is not found"));
+    public Pet findById(Long id) throws RuntimeException {
+        return petRepository.findById(id).orElseThrow(() -> new PetNotFoundException(ErrorCode.PET_NOT_FOUND.getErrMsgKey()));
     }
 
     @Override

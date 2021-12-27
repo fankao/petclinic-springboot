@@ -1,11 +1,9 @@
 package com.pet.service.impl;
 
-import com.pet.entity.Pet;
 import com.pet.entity.PetType;
-import com.pet.repository.PetRepository;
+import com.pet.exception.EntityNotFoundException;
 import com.pet.repository.PetTypeRepository;
 import com.pet.service.PetTypeService;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +23,8 @@ public class PetTypeServiceImpl implements PetTypeService {
     }
 
     @Override
-    public PetType findById(Long id) throws NotFoundException {
-        return petTypeRepository.findById(id).orElseThrow(() -> new NotFoundException(String.format("Not found the pet type with id %d", id)));
+    public PetType findById(Long id) throws RuntimeException {
+        return petTypeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Requested pet type not found"));
     }
 
     @Override

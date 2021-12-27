@@ -2,6 +2,8 @@ package com.pet.service.impl;
 
 import com.pet.dto.OwnerDto;
 import com.pet.entity.Owner;
+import com.pet.exception.ErrorCode;
+import com.pet.exception.OwnerNotFoundException;
 import com.pet.mapper.OwnerMapper;
 import com.pet.repository.OwnerRepository;
 import com.pet.service.OwnerService;
@@ -28,9 +30,9 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public OwnerDto findById(Long id) throws NotFoundException {
+    public OwnerDto findById(Long id) throws RuntimeException {
         Owner owner = ownerRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Not found the owner with id %d", id)));
+                .orElseThrow(() -> new OwnerNotFoundException(ErrorCode.ENTITY_NOT_FOUND.getErrMsgKey()));
         return ownerMapper.ownerToOwnerDto(owner);
     }
 
