@@ -1,8 +1,8 @@
 pipeline{
 	agent any
-// 	tools {
-// 		maven "MAVEN"
-// 	}
+	tools {
+		maven "MAVEN"
+	}
 // 	environment {
 // 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 // 	}
@@ -11,7 +11,7 @@ pipeline{
 		stage('Initialize'){
 		    steps{
 			echo "PATH = ${MAVEN_HOME}/bin:${PATH}"
-			echo "MAVEN_HOME = /home/chien/.sdkman/candidates/maven/current"
+			echo "MAVEN_HOME = /opt/maven"
 		    }
 		}
 	     stage('Build'){
