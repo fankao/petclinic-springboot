@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(locations = {"classpath:application-test.yml"}, properties = "management.port=0")
+//@TestPropertySource(locations = {"classpath:application-test.yml"}, properties = "management.port=0")
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
 public class OwnerControllerTest {
