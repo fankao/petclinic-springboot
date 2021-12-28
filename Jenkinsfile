@@ -7,12 +7,12 @@ pipeline{
  	stages {
      stage('Build'){
 		steps{
-			sh 'chmod +x ./mvnw clean install'
+			sh 'mvn clean install -DskipTests'
 		}   
     }
      stage('Test'){
 		 steps{
-			 sh 'chmod +x ./mvnw test'
+			 sh 'mvn test'
 		 }
     }
 // 		stage('Build Docker image') {
