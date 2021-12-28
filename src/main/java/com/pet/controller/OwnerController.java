@@ -2,6 +2,10 @@ package com.pet.controller;
 
 import com.pet.dto.OwnerDto;
 import com.pet.service.OwnerService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -16,9 +20,17 @@ import java.util.Set;
 @RequiredArgsConstructor
 @RequestMapping("/owners")
 @Slf4j
+@Tag(name = "Owner",description = "REST API for owner information")
 public class OwnerController {
     private final OwnerService ownerService;
-
+    @Operation(
+            summary = "Get all owner",
+            description = "")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "Bad request"),
+            @ApiResponse(responseCode = "404", description = "Not found"),
+    })
     @GetMapping
     public ResponseEntity<Set<OwnerDto>> getAllOwner() {
         log.info("Calling api GET getAllOwner...");
