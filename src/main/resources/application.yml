@@ -9,8 +9,3 @@ server:
   port: ${PORT}
   servlet:
     context-path: /api
-springdoc:
-  api-docs:
-    path: /v1/api-docs
-  swagger-ui:
-    path: /documentation.html
