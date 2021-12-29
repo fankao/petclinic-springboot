@@ -6,6 +6,14 @@ pipeline{
 // 	environment {
 // 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
 // 	}
+    environment{
+        APP_NAME=petclinic
+        APP_HOST=localhost
+        DB_USERNAME=postgres
+        DB_PASSWORD=1234
+        PORT=8088
+        DB_PORT=5432
+    }
 
  	stages {
 		stage('Initialize'){
@@ -24,11 +32,16 @@ pipeline{
 				 sh 'mvn test'
 			 }
 	    }
-// 		stage('Build Docker image') {
-// 			steps {
-// 				sh 'docker build -t 02039921/spring-petclinic-devops:latest .'
-// 			}
-// 		}
+		stage('Build Docker image') {
+			steps {
+				sh 'docker build -t 02039921/spring-petclinic:latest .'
+			}
+		}
+		stage('Deploy local'){
+		    steps{
+		        sh 'docker run '
+		    }
+		}
 // 		stage('Push image to DockerHub') {
 // 			steps {
 // 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
