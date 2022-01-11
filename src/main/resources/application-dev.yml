@@ -13,7 +13,6 @@ spring:
     user: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 server:
-  port: ${PORT}
   servlet:
     context-path: /api
 management:
