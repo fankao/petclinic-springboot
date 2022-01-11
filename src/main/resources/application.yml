@@ -1,12 +1,9 @@
 spring:
   application:
     name: ${APP_NAME}
-  datasource:
-    url: jdbc:postgresql://${APP_HOST}:${DB_PORT}/${APP_NAME}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+  profiles:
+    active: ${PROFILE}
 server:
-  port: ${PORT}
   servlet:
     context-path: /api
 springdoc:

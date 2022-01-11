@@ -1,10 +1,6 @@
 package com.pet.bootstrap;
 
 import com.github.javafaker.Faker;
-import com.pet.entity.Owner;
-import com.pet.entity.Pet;
-import com.pet.entity.PetType;
-import com.pet.entity.Visit;
 import com.pet.service.OwnerService;
 import com.pet.service.PetService;
 import com.pet.service.PetTypeService;
@@ -13,8 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
 
 @Component
 @RequiredArgsConstructor

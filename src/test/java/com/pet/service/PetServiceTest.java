@@ -1,32 +1,48 @@
 package com.pet.service;
 
 import com.github.javafaker.Faker;
+import com.pet.dto.PetDto;
+import com.pet.entity.Owner;
 import com.pet.entity.Pet;
+import com.pet.entity.PetType;
 import com.pet.exception.PetNotFoundException;
+import com.pet.mapper.*;
 import com.pet.repository.PetRepository;
 import com.pet.service.impl.PetServiceImpl;
 import javassist.NotFoundException;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
+import org.junit.platform.commons.util.ReflectionUtils;
+import org.mapstruct.factory.Mappers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
+import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.StreamSupport;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
-
 @ExtendWith(MockitoExtension.class)
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration(classes = {
+//        PetMapperImpl.class,
+//        OwnerMapperImpl.class,
+//        VisitMapperImpl.class,
+//        PetTypeMapperImpl.class
+//})
+//@ActiveProfiles("test")
 public class PetServiceTest {
     @InjectMocks
     private PetServiceImpl petService;
@@ -35,9 +51,16 @@ public class PetServiceTest {
 
     private Faker faker;
 
+    @Spy
+    private PetMapper petMapper = Mappers.getMapper(PetMapper.class);
+
     @BeforeEach
-    public void setUp() {
+    public void setup() {
         faker = new Faker();
+        PetTypeMapper petTypeMapper = Mappers.getMapper(PetTypeMapper.class);
+        VisitMapper visitMapper = Mappers.getMapper(VisitMapper.class);
+        ReflectionTestUtils.setField(petMapper, "visitMapper", visitMapper);
+        ReflectionTestUtils.setField(petMapper, "petTypeMapper", petTypeMapper);
     }
 
     @Test
@@ -70,7 +93,16 @@ public class PetServiceTest {
     }
     @Test
     public void savePet_ReturnTrue_PetNameIsValid() throws Exception{
-
+        Pet pet = Pet.builder()
+                .id(1L)
+                .name("Juhn")
+                .birthDate(LocalDate.now().minusDays(20))
+                .owner(Owner.builder().id(1L).build())
+                .petType(PetType.builder().id(1L).build())
+                .build();
+        PetDto petDto = petMapper.petToPetDto(pet);
+        when(petRepository.save(pet)).thenReturn(pet);
+        assertEquals(pet.getId(), petService.save(petDto).getId());
     }
 
     private Set<Pet> listOfPet() {
