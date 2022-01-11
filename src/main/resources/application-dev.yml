@@ -16,3 +16,8 @@ server:
   port: ${PORT}
   servlet:
     context-path: /api
+management:
+  endpoint:
+    health:
+      show-details: always
+# Show details of health endpoint
