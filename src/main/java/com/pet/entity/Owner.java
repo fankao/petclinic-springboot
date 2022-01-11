@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,8 +18,8 @@ import java.util.Set;
 @Table(name = "owners")
 public class Owner extends Person{
     @Builder
-    public Owner(Long id, String firstName, String lastName, String address, String telephone, String city, Set<Pet> pets) {
-        super(id, firstName, lastName);
+    public Owner(Long id, Timestamp createdDate, Timestamp updatedDate, String firstName, String lastName, String address, String telephone, String city, Set<Pet> pets) {
+        super(id, createdDate, updatedDate, firstName, lastName);
         this.address = address;
         this.telephone = telephone;
         this.city = city;
