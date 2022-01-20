@@ -38,7 +38,8 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public OwnerDto save(OwnerDto object) {
-        return ownerMapper.ownerToOwnerDto(ownerRepository.save(ownerMapper.ownerDtoToOwner(object)));
+        Owner owner = ownerMapper.ownerDtoToOwner(object);
+        return ownerMapper.ownerToOwnerDto(ownerRepository.save(owner));
     }
 
     @Override

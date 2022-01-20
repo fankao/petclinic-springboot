@@ -5,14 +5,8 @@ public class PetNotFoundException extends RuntimeException{
     private final String errMsgKey;
     private final String errorCode;
 
-    public PetNotFoundException(ErrorCode code) {
-        super(code.getErrMsgKey());
-        this.errMsgKey = code.getErrMsgKey();
-        this.errorCode = code.getErrCode();
-    }
-
     public PetNotFoundException(final String message) {
-        super(message);
+        super(ErrorCode.PET_NOT_FOUND.getErrMsgKey());
         this.errMsgKey = ErrorCode.PET_NOT_FOUND.getErrMsgKey();
         this.errorCode = ErrorCode.PET_NOT_FOUND.getErrCode();
     }

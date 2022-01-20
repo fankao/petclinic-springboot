@@ -4,10 +4,11 @@ import com.pet.dto.PetTypeDto;
 import com.pet.entity.Pet;
 import com.pet.entity.PetType;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
 
 import java.util.Set;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring",nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface PetTypeMapper {
     PetTypeDto petTypeToPetType(PetType petType);
     PetType petTypeTypeDtoToPet(PetTypeDto petTypeDto);

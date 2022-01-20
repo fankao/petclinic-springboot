@@ -1,13 +1,16 @@
 package com.pet.mapper;
 
 import com.pet.dto.OwnerDto;
+import com.pet.dto.PetDto;
 import com.pet.entity.Owner;
+import com.pet.entity.Pet;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValueCheckStrategy;
 
 import java.util.Set;
 
-@Mapper(componentModel = "spring", uses = {PetMapper.class})
+@Mapper(componentModel = "spring",nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface OwnerMapper {
     OwnerDto ownerToOwnerDto(Owner owner);
 

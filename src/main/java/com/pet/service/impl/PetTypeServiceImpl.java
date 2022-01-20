@@ -2,6 +2,7 @@ package com.pet.service.impl;
 
 import com.pet.entity.PetType;
 import com.pet.exception.EntityNotFoundException;
+import com.pet.exception.ErrorCode;
 import com.pet.repository.PetTypeRepository;
 import com.pet.service.PetTypeService;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class PetTypeServiceImpl implements PetTypeService {
 
     @Override
     public PetType findById(Long id) throws RuntimeException {
-        return petTypeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Requested pet type not found"));
+        return petTypeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorCode.PET_TYPE_NOT_FOUND));
     }
 
     @Override

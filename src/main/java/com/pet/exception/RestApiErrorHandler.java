@@ -61,7 +61,7 @@ public class RestApiErrorHandler {
                                                                  EntityNotFoundException ex, Locale locale) {
         Error error = ErrorUtils
                 .createError(
-                        String.format("%s %s", ErrorCode.RESOURCE_NOT_FOUND.getErrMsgKey(), ex.getMessage()),
+                        String.format("%s",ex.getMessage()),
                         ex.getErrorCode(),
                         HttpStatus.NOT_FOUND.value()).setUrl(request.getRequestURL().toString())
                 .setReqMethod(request.getMethod())
@@ -70,11 +70,11 @@ public class RestApiErrorHandler {
     }
 
     @ExceptionHandler(OwnerNotFoundException.class)
-    public ResponseEntity<Error> handleCustomerNotFoundException(HttpServletRequest request,
+    public ResponseEntity<Error> handleOwnerFoundException(HttpServletRequest request,
                                                                  OwnerNotFoundException ex, Locale locale) {
         Error error = ErrorUtils
                 .createError(
-                        String.format("%s %s", ErrorCode.OWNER_NOT_FOUND.getErrMsgKey(), ex.getMessage()),
+                        String.format("%s",ex.getMessage()),
                         ex.getErrorCode(),
                         HttpStatus.NOT_FOUND.value()).setUrl(request.getRequestURL().toString())
                 .setReqMethod(request.getMethod())
@@ -87,7 +87,7 @@ public class RestApiErrorHandler {
                                                             PetNotFoundException ex, Locale locale) {
         Error error = ErrorUtils
                 .createError(
-                        String.format("%s %s", ErrorCode.PET_NOT_FOUND.getErrMsgKey(), ex.getMessage()),
+                        String.format("%s",ex.getMessage()),
                         ex.getErrorCode(),
                         HttpStatus.NOT_FOUND.value()).setUrl(request.getRequestURL().toString())
                 .setReqMethod(request.getMethod())

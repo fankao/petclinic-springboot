@@ -15,6 +15,8 @@ public enum ErrorCode {
     RESOURCE_NOT_FOUND(HttpStatus.PRECONDITION_FAILED.toString(), "Requested resource not found"),
     OWNER_NOT_FOUND(HttpStatus.PRECONDITION_FAILED.toString(), "Requested owner not found"),
     PET_NOT_FOUND(HttpStatus.PRECONDITION_FAILED.toString(), "Requested pet not found"),
+    PET_TYPE_NOT_FOUND(HttpStatus.PRECONDITION_FAILED.toString(), "Requested pet type not found"),
+    VISIT_NOT_FOUND(HttpStatus.PRECONDITION_FAILED.toString(), "Requested visit not found"),
     ENTITY_NOT_FOUND(HttpStatus.PRECONDITION_FAILED.toString(), "Requested entity not found"),
     GENERIC_ALREADY_EXISTS(HttpStatus.PRECONDITION_FAILED.toString(), "Already exists.");
 
