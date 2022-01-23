@@ -8,17 +8,17 @@ import org.mapstruct.NullValueCheckStrategy;
 
 import java.util.Set;
 
-@Mapper(componentModel = "spring", uses = {OwnerMapper.class,VisitMapper.class, PetTypeMapper.class}, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+@Mapper(componentModel = "spring", uses = {VisitMapper.class, PetTypeMapper.class}, nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
 public interface PetMapper {
     @Mapping(source = "birthDate", target = "birthDate", dateFormat = "yyyy-MM-dd")
+    @Mapping(source = "owner.id",target = "ownerId")
     PetDto petToPetDto(Pet pet);
 
     @Mapping(source = "birthDate", target = "birthDate", dateFormat = "yyyy-MM-dd")
+    @Mapping(source = "ownerId",target = "owner.id")
     Pet petDtoToPet(PetDto petDto);
 
     Set<PetDto> petsToPetDtos(Set<Pet> pets);
 
     Set<Pet> petDtosToPets(Set<PetDto> petDtos);
-
-
 }

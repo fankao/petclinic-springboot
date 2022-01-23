@@ -10,7 +10,7 @@ import org.mapstruct.NullValueCheckStrategy;
 
 import java.util.Set;
 
-@Mapper(componentModel = "spring",nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+@Mapper(componentModel = "spring",nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,uses = {PetMapper.class})
 public interface OwnerMapper {
     OwnerDto ownerToOwnerDto(Owner owner);
 

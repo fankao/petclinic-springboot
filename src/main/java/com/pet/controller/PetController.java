@@ -21,8 +21,8 @@ public class PetController {
         return ResponseEntity.ok(petService.findAll());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Set<PetDto>> getPetById(@PathVariable Long id){
-        return ResponseEntity.ok(petService.findAll());
+    public ResponseEntity<PetDto> getPetById(@PathVariable Long id){
+        return ResponseEntity.ok(petService.findById(id));
     }
     @PostMapping
     public ResponseEntity<PetDto> create (@RequestBody PetDto petDto){

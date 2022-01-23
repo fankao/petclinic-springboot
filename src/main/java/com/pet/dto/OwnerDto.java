@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -25,4 +26,5 @@ public class OwnerDto {
     private String address;
     private String city;
     private String telephone;
+    private Set<PetDto> pets;
 }

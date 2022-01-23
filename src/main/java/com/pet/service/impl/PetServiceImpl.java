@@ -13,11 +13,9 @@ import com.pet.repository.OwnerRepository;
 import com.pet.repository.PetRepository;
 import com.pet.repository.PetTypeRepository;
 import com.pet.service.PetService;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,12 +39,14 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public PetDto findById(Long id) throws RuntimeException {
-        return petRepository.findById(id).map(petMapper::petToPetDto).orElseThrow(() -> new PetNotFoundException(ErrorCode.PET_NOT_FOUND.getErrMsgKey()));
+        Pet pet = petRepository.findById(id).orElseThrow(() -> new PetNotFoundException(ErrorCode.PET_NOT_FOUND.getErrMsgKey()));
+        PetDto petDto = petMapper.petToPetDto(pet);
+        return petDto;
     }
 
     @Override
     public PetDto save(PetDto object) {
-        Owner owner = ownerRepository.findById(object.getOwner().getId()).orElse(null);
+        Owner owner = ownerRepository.findById(object.getOwnerId()).orElse(null);
         if(Objects.isNull(owner)){
             throw new OwnerNotFoundException(ErrorCode.OWNER_NOT_FOUND.getErrMsgKey());
         }

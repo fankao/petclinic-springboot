@@ -19,7 +19,7 @@ public class PetDto {
     private String name;
     private PetTypeDto petType;
     private Set<VisitDto> visits;
-    private OwnerDto owner;
+    private Long ownerId;
 
     @NotBlank(message = "Must not be blank")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
