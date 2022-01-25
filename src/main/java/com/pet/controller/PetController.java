@@ -14,6 +14,7 @@ import java.util.Set;
 @RequestMapping("/pets")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin("*")
 public class PetController {
     private final PetService petService;
     @GetMapping

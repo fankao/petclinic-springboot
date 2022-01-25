@@ -21,6 +21,7 @@ import java.util.Set;
 @RequestMapping("/owners")
 @Slf4j
 @Tag(name = "Owner",description = "REST API for owner information")
+@CrossOrigin("*")
 public class OwnerController {
     private final OwnerService ownerService;
     @Operation(
